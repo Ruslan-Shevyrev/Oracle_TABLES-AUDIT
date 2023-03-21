@@ -320,21 +320,11 @@ IF nDELETE = 1 THEN
 						'FOR EACH ROW '||chr(10)||chr(13)||
 						'DECLARE '||chr(10)||chr(13)||
 						'pragma autonomous_transaction; '||chr(10)||chr(13)||
-						'vAUD_USER 		VARCHAR2(4000); '||chr(10)||chr(13)||
+						'vAUD_USER		VARCHAR2(4000); '||chr(10)||chr(13)||
 						'nAUD_USER_ID	NUMBER; '||chr(10)||chr(13)||
 						'BEGIN '||chr(10)||chr(13)||
 							'vAUD_USER :=nvl(v(''APP_USER''), sys_context(''userenv'',''os_user'')); '||chr(10)||chr(13)||
 							'nAUD_USER_ID	:=v(''EXT_USERID''); '||chr(10)||chr(13)||
-							'IF nAUD_USER_ID IS NULL THEN '||chr(10)||chr(13)||
-								'BEGIN '||chr(10)||chr(13)||
-									'SELECT u.USERID '||chr(10)||chr(13)||
-										'INTO nAUD_USER_ID '||chr(10)||chr(13)||
-										'FROM userinfo u '||chr(10)||chr(13)||
-										'WHERE lower(u.USERSAM) = lower(vAUD_USER); '||chr(10)||chr(13)||
-								'EXCEPTION WHEN OTHERS THEN '||chr(10)||chr(13)||
-									'nAUD_USER_ID:= NULL; '||chr(10)||chr(13)||
-								'END; '||chr(10)||chr(13)||
-							'END IF; '||chr(10)||chr(13)||
 							'IF INSERTING THEN '||chr(10)||chr(13)||
 								vINSERT||chr(10)||chr(13)||
 							'ELSIF UPDATING THEN '||chr(10)||chr(13)||
@@ -344,7 +334,7 @@ IF nDELETE = 1 THEN
 							'END IF; '||chr(10)||chr(13)||
 							'COMMIT; '||chr(10)||chr(13)||
 						'END '||upper(vAUD_TRG_NAME)||';';
-					
+
 	UPDATE LIST_AUD_TABLES_OBJECTS
 		SET TABLE_TRIGGER = UPPER(vTABLE_TRG_NAME) 
 		WHERE ID = LIST_AUD_ID;
