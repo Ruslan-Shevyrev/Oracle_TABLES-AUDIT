@@ -38,7 +38,7 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
 |**nINSERT**|1, 0|1 - add INSERT Audit, 0 - don't add|
 |**nUPDATE**|1, 0|1 - add UPDATE Audit, 0 - don't add|
 |**nDELETE**|1, 0|1 - add DELETE Audit, 0 - don't add|
-|**nTIME_TYPE**|1, 2, null|1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter, 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**|
+|**nTIME_TYPE**|1, 2, null|1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter,\\ 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**|
 |**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter show Days count for saving Audit|
 |**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter show Month count for saving Audit|
 
