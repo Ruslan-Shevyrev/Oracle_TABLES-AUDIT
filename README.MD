@@ -34,7 +34,7 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
 |----------|------|----|
 |**vTABLE_NAME**|varchar2|Table for audit|
 |**vSCHEMA**|varchar2|Default schema is schema where Package is|
-|**tGRANTS**|PKG_AUDIT.GRANTS \ (TYPE GRANTS IS TABLE OF VARCHAR2(100))|List of schemas. Grant select will be added on **<AUDIT_TABLE>** to this schemas|
+|**tGRANTS**|PKG_AUDIT.GRANTS (TYPE GRANTS IS TABLE OF VARCHAR2(100))|List of schemas. Grant select will be added on **<AUDIT_TABLE>** to this schemas|
 
 
 - **vTABLE_NAME** - table for audit
