@@ -5,7 +5,7 @@ An audit is needed to monitor for the addition, updating, or deletion of records
 ## Instalation
 
 Create all objects from 
-- **AUDIT_CLEAR.sql**, 
-- **LIST_AUD_TABLES_OBJECTS.sql**, 
-- **PKG_AUD_(SPECIFICATION)**, 
-- **PKG_AUD_(BODY)**.
+- **AUDIT_CLEAR.sql**
+- **AUDIT_TABLES_OBJECTS_LIST.sql**
+- **PKG_AUD_(SPECIFICATION)**
+- **PKG_AUD_(BODY)**
