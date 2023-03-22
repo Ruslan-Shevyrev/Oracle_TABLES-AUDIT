@@ -1,6 +1,6 @@
 # Tables-Audit
 
-An audit is needed to monitor for the addition, updating, or deletion of records to the table.
+An audit is needed to monitor the inserting, updating, or deleting records in the table.
 
 ## Instalation
 
@@ -8,9 +8,9 @@ Create all objects from
 1. **AUDIT_TABLES_OBJECTS_LIST.sql**
 2. **AUDIT_CLEAR.sql**
 3. **CLEAR_AUDIT_TABLES_JOB.sql** - job for cleaning audit table.\
-:warning: You can configurate you own job. You maybe should add ***GRANT SCHEDULER_ADMIN TO <Your Schema>***
+:warning: You can configurate your own job. Probably, you should add ***GRANT SCHEDULER_ADMIN TO Your_Schema***
 4. **V_AUDIT_TABLES_OBJECTS_LIST.sql**\
-:warning: You maybe should add ***GRANT CREATE ANY VIEW TO <Your Schema>***
+:warning: Probably, you should add ***GRANT CREATE ANY VIEW TO Your_Schema***
 5. **PKG_AUD_(SPECIFICATION)**
 6. **PKG_AUD_(BODY)**
 
@@ -30,17 +30,17 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
                                nMONTHS_CNT IN NUMBER DEFAULT NULL);
 ```
 
-|PARAMENTER|VALUES|NOTE|
+|PARAMETER|VALUES|NOTE|
 |----------|------|----|
 |**vTABLE_NAME**|varchar2|Table for audit|
-|**vSCHEMA**|varchar2|Default schema is schema where Package is|
-|**tGRANTS**|PKG_AUDIT.GRANTS (TYPE GRANTS IS TABLE OF VARCHAR2(100))|List of schemas. Grant select will be added on **<AUDIT_TABLE>** to this schemas|
+|**vSCHEMA**|varchar2|Default schema is a schema where Package is|
+|**tGRANTS**|PKG_AUDIT.GRANTS (TYPE GRANTS IS TABLE OF VARCHAR2(100))|List of schemas. Grant select will be added on **<AUDIT_TABLE>** to these schemas|
 |**nINSERT**|1, 0|1 - add INSERT Audit, 0 - don't add|
 |**nUPDATE**|1, 0|1 - add UPDATE Audit, 0 - don't add|
 |**nDELETE**|1, 0|1 - add DELETE Audit, 0 - don't add|
 |**nTIME_TYPE**|1, 2, null|1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter, 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**|
-|**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter show Days count for saving Audit|
-|**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter show Month count for saving Audit|
+|**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter sets a Days count for Audit saving|
+|**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter sets a Months count for Audit saving|
 
 ### :two: Creating Audit Objects with Custom Objects Names
 
@@ -61,11 +61,11 @@ PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME     IN varchar2,
                                       nMONTHS_CNT     IN NUMBER DEFAULT NULL);
 ```
 
-|PARAMENTER|NOTE|DEFAULT|
+|PARAMETER|NOTE|DEFAULT|
 |----------|----|----|
 |**vAUD_TABLE**|Audit table name|**AUD_<vTABLE_NAME>**|
 |**vAUD_SEQ**|ID sequence name for **vAUD_TABLE**|**AUD_<vTABLE_NAME>_SEQ**|
-|**nAUD_SEQ_CACHE**|Cashe for **vAUD_SEQ**|100|
+|**nAUD_SEQ_CACHE**|Caсhe for **vAUD_SEQ**|100|
 |**vAUD_TRG_NAME**|Trigger name for **vAUD_TABLE**|**AUD_<vTABLE_NAME>_I**|
 |**vTABLE_TRG_NAME**|Trigger name for **vTABLE_NAME**|**LOG_<vTABLE_NAME>**|
 
@@ -82,7 +82,7 @@ PROCEDURE DROP_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
                              vSCHEMA     IN varchar2 DEFAULT vSCHEMA_DEFAULT);
 ```
 
-### :five: Add Table to Clear Job
+### :five: Add Table to clear in Job
 
 ```
 PROCEDURE CREATE_AUDIT_CLEAR(P_vSCHEMA      IN VARCHAR2,
@@ -94,17 +94,17 @@ PROCEDURE CREATE_AUDIT_CLEAR(P_vSCHEMA      IN VARCHAR2,
                              P_vIS_ACTIVE   IN VARCHAR2);
 ```
 
-|PARAMENTER|VALUES|NOTE|
+|PARAMETER|VALUES|NOTE|
 |----------|------|----|
-|**P_vSCHEMA**|varchar2|Default schema is schema where Package is|
+|**P_vSCHEMA**|varchar2|Default schema is a schema where Package is|
 |**P_vTABLE_NAME**|varchar2|Table for clearing|
 |**P_vCOLUMN_NAME**|varchar2|Column with Date type|
 |**nTIME_TYPE**|1, 2, null|1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter, 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**|
-|**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter show Days count for saving Audit|
-|**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter show Month count for saving Audit|
-|**P_vIS_ACTIVE**|'Y', 'N'|'Y' - clear active, 'N' - clear inactive|
+|**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter sets a Days count for Audit saving|
+|**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter sets a Month count for Audit saving|
+|**P_vIS_ACTIVE**|'Y', 'N'|'Y' - active clearing, 'N' - inactive clearing|
 
-### :six: Update Table to Clear Job
+### :six: Update Table to clear in Job
 
 ```
 PROCEDURE UPDATE_AUDIT_CLEAR(P_nID          IN NUMBER,
@@ -121,7 +121,7 @@ PROCEDURE UPDATE_AUDIT_CLEAR(P_nID          IN NUMBER,
 |----------|------|----|
 |**P_nID**|number|**AUDIT_CLEAR.ID**|
 
-### :seven: Delete Table to Clear Job
+### :seven: Delete Table to Clear in Job
 
 ```
 PROCEDURE DELETE_AUDIT_CLEAR(P_nID IN NUMBER);
@@ -131,7 +131,7 @@ PROCEDURE DELETE_AUDIT_CLEAR(P_nID IN NUMBER);
 |----------|------|----|
 |**P_nID**|number|**AUDIT_CLEAR.ID**|
 
-### :eight: Clear Job
+### :eight: Clearing Job
 
 ```
 PROCEDURE CLEAR_AUDIT_TABLES;
