@@ -70,48 +70,74 @@ PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME     IN varchar2,
 |**vTABLE_TRG_NAME**|Trigger name for **vTABLE_NAME**|**LOG_<vTABLE_NAME>**|
 
 ### :three: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
+
 ```
 PROCEDURE DROP_AUDIT_OBJECTS(nID IN NUMBER);
 ```
 
 ### :four: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.T_SCHEMA** and **AUDIT_TABLES_OBJECTS_LIST.SOURCE_TABLE**
+
 ```
 PROCEDURE DROP_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
                              vSCHEMA     IN varchar2 DEFAULT vSCHEMA_DEFAULT);
 ```
 
-### :five:
+### :five: Add Table to Clear Job
+
 ```
-PROCEDURE CREATE_AUDIT_CLEAR(P_vSCHEMA		IN VARCHAR2,
-							P_vTABLE_NAME	IN VARCHAR2,
-							P_vCOLUMN_NAME	IN VARCHAR2,
-							P_nTIME_TYPE	IN NUMBER,
-							P_nDAYS_CNT		IN NUMBER,
-							P_nMONTHS_CNT	IN NUMBER,
-							P_vIS_ACTIVE	IN VARCHAR2);
+PROCEDURE CREATE_AUDIT_CLEAR(P_vSCHEMA      IN VARCHAR2,
+                             P_vTABLE_NAME  IN VARCHAR2,
+                             P_vCOLUMN_NAME IN VARCHAR2,
+                             P_nTIME_TYPE   IN NUMBER,
+                             P_nDAYS_CNT    IN NUMBER,
+                             P_nMONTHS_CNT  IN NUMBER,
+                             P_vIS_ACTIVE   IN VARCHAR2);
 ```
 
-### :six:
+|PARAMENTER|VALUES|NOTE|
+|----------|------|----|
+|**P_vSCHEMA**|varchar2|Default schema is schema where Package is|
+|**P_vTABLE_NAME**|varchar2|Table for clearing|
+|**P_vCOLUMN_NAME**|varchar2|Column with Date type|
+|**nTIME_TYPE**|1, 2, null|1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter, 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**|
+|**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter show Days count for saving Audit|
+|**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter show Month count for saving Audit|
+|**P_vIS_ACTIVE**|'Y', 'N'|'Y' - clear active, 'N' - clear inactive|
+
+### :six: Update Table to Clear Job
+
 ```
-PROCEDURE UPDATE_AUDIT_CLEAR(P_nID			IN NUMBER,
-							P_vSCHEMA		IN VARCHAR2,
-							P_vTABLE_NAME	IN VARCHAR2,
-							P_vCOLUMN_NAME	IN VARCHAR2,
-							P_nTIME_TYPE	IN NUMBER,
-							P_nDAYS_CNT		IN NUMBER,
-							P_nMONTHS_CNT	IN NUMBER,
-							P_vIS_ACTIVE	IN VARCHAR2);
+PROCEDURE UPDATE_AUDIT_CLEAR(P_nID          IN NUMBER,
+                             P_vSCHEMA      IN VARCHAR2,
+                             P_vTABLE_NAME  IN VARCHAR2,
+                             P_vCOLUMN_NAME IN VARCHAR2,
+                             P_nTIME_TYPE   IN NUMBER,
+                             P_nDAYS_CNT    IN NUMBER,
+                             P_nMONTHS_CNT  IN NUMBER,
+                             P_vIS_ACTIVE   IN VARCHAR2);
 ```
 
-### :seven:
+|PARAMENTER|VALUES|NOTE|
+|----------|------|----|
+|**P_nID**|number|**AUDIT_CLEAR.ID**|
+
+### :seven: Delete Table to Clear Job
+
 ```
 PROCEDURE DELETE_AUDIT_CLEAR(P_nID IN NUMBER);
 ```
 
-### :eight:
+|PARAMENTER|VALUES|NOTE|
+|----------|------|----|
+|**P_nID**|number|**AUDIT_CLEAR.ID**|
+
+### :eight: Clear Job
+
 ```
 PROCEDURE CLEAR_AUDIT_TABLES;
 ```
+
+Procedure for **CLEAR_AUDIT_TABLES_JOB**
 
 <table>
 	<tr>
