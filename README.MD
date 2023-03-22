@@ -5,14 +5,14 @@ An audit is needed to monitor for the addition, updating, or deletion of records
 ## Instalation
 
 Create all objects from
-- **AUDIT_TABLES_OBJECTS_LIST.sql**
-- **AUDIT_CLEAR.sql**
-- **CLEAR_AUDIT_TABLES_JOB.sql** - job for cleaning audit table.\
+1. **AUDIT_TABLES_OBJECTS_LIST.sql**
+2. **AUDIT_CLEAR.sql**
+3. **CLEAR_AUDIT_TABLES_JOB.sql** - job for cleaning audit table.\
 :warning: You can configurate you own job. You maybe should add ***GRANT SCHEDULER_ADMIN TO <Your Schema>***
-- **V_AUDIT_TABLES_OBJECTS_LIST.sql**\
+4. **V_AUDIT_TABLES_OBJECTS_LIST.sql**\
 :warning: You maybe should add ***GRANT CREATE ANY VIEW TO <Your Schema>***
-- **PKG_AUD_(SPECIFICATION)**
-- **PKG_AUD_(BODY)**
+5. **PKG_AUD_(SPECIFICATION)**
+6. **PKG_AUD_(BODY)**
 
 ## Using
 
