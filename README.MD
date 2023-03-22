@@ -67,7 +67,7 @@ PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME     IN varchar2,
 |**vAUD_SEQ**|ID sequence name for **vAUD_TABLE**|**AUD_<vTABLE_NAME>_SEQ**|
 |**nAUD_SEQ_CACHE**|Cashe for **vAUD_SEQ**|100|
 |**vAUD_TRG_NAME**|Trigger name for **vAUD_TABLE**|**AUD_<vTABLE_NAME>_I**|
-|**vTABLE_TRG_NAME**|Trigger name for **vTABLE_NAME**|1 - add UPDATE Audit, 0 - don't add|
+|**vTABLE_TRG_NAME**|Trigger name for **vTABLE_NAME**|**LOG_<vTABLE_NAME>**|
 
 :three: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
 ```
@@ -76,6 +76,6 @@ PROCEDURE DROP_AUDIT_OBJECTS(nID IN NUMBER);
 
 :four: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.T_SCHEMA** and **AUDIT_TABLES_OBJECTS_LIST.SOURCE_TABLE**
 ```
-PROCEDURE DROP_AUDIT_OBJECTS(vTABLE_NAME	IN varchar2,
-							vSCHEMA			IN varchar2 DEFAULT vSCHEMA_DEFAULT);
+PROCEDURE DROP_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
+                             vSCHEMA     IN varchar2 DEFAULT vSCHEMA_DEFAULT);
 ```
