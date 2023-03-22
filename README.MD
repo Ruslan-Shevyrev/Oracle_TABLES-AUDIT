@@ -121,7 +121,7 @@ PROCEDURE UPDATE_AUDIT_CLEAR(P_nID          IN NUMBER,
 |----------|------|----|
 |**P_nID**|number|**AUDIT_CLEAR.ID**|
 
-### :seven: Delete Table to Clear in Job
+### :seven: Delete Table to clear in Job
 
 ```
 PROCEDURE DELETE_AUDIT_CLEAR(P_nID IN NUMBER);
