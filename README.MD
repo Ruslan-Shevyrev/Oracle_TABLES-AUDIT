@@ -42,7 +42,7 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
 |**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter show Days count for saving Audit|
 |**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter show Month count for saving Audit|
 
-:two: Creating Audit Objects with Custom Objects Names
+### :two: Creating Audit Objects with Custom Objects Names
 
 ```
 PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME     IN varchar2,
@@ -69,13 +69,46 @@ PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME     IN varchar2,
 |**vAUD_TRG_NAME**|Trigger name for **vAUD_TABLE**|**AUD_<vTABLE_NAME>_I**|
 |**vTABLE_TRG_NAME**|Trigger name for **vTABLE_NAME**|**LOG_<vTABLE_NAME>**|
 
-:three: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
+### :three: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
 ```
 PROCEDURE DROP_AUDIT_OBJECTS(nID IN NUMBER);
 ```
 
-:four: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.T_SCHEMA** and **AUDIT_TABLES_OBJECTS_LIST.SOURCE_TABLE**
+### :four: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.T_SCHEMA** and **AUDIT_TABLES_OBJECTS_LIST.SOURCE_TABLE**
 ```
 PROCEDURE DROP_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
                              vSCHEMA     IN varchar2 DEFAULT vSCHEMA_DEFAULT);
+```
+
+### :five:
+```
+PROCEDURE CREATE_AUDIT_CLEAR(P_vSCHEMA		IN VARCHAR2,
+							P_vTABLE_NAME	IN VARCHAR2,
+							P_vCOLUMN_NAME	IN VARCHAR2,
+							P_nTIME_TYPE	IN NUMBER,
+							P_nDAYS_CNT		IN NUMBER,
+							P_nMONTHS_CNT	IN NUMBER,
+							P_vIS_ACTIVE	IN VARCHAR2);
+```
+
+### :six:
+```
+PROCEDURE UPDATE_AUDIT_CLEAR(P_nID			IN NUMBER,
+							P_vSCHEMA		IN VARCHAR2,
+							P_vTABLE_NAME	IN VARCHAR2,
+							P_vCOLUMN_NAME	IN VARCHAR2,
+							P_nTIME_TYPE	IN NUMBER,
+							P_nDAYS_CNT		IN NUMBER,
+							P_nMONTHS_CNT	IN NUMBER,
+							P_vIS_ACTIVE	IN VARCHAR2);
+```
+
+### :seven:
+```
+PROCEDURE DELETE_AUDIT_CLEAR(P_nID IN NUMBER);
+```
+
+### :eight:
+```
+PROCEDURE CLEAR_AUDIT_TABLES;
 ```
