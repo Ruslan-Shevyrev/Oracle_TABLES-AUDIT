@@ -14,7 +14,7 @@ Create all objects from
 
 ## Using
 
-###:one: Creating Audit Objects with Default Objects Names
+### :one: Creating Audit Objects with Default Objects Names
 
 ```
 PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME	IN varchar2,
