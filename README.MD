@@ -35,17 +35,12 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
 |**vTABLE_NAME**|varchar2|Table for audit|
 |**vSCHEMA**|varchar2|Default schema is schema where Package is|
 |**tGRANTS**|PKG_AUDIT.GRANTS (TYPE GRANTS IS TABLE OF VARCHAR2(100))|List of schemas. Grant select will be added on **<AUDIT_TABLE>** to this schemas|
-
-
-- **vTABLE_NAME** - table for audit
-- **vSCHEMA** - default schema is schema where Package is
-- **tGRANTS** - list of schemas. Grant select will be added on **<AUDIT_TABLE>** to this schemas
-- **nINSERT** - 1 - add INSERT Audit, 0 - don't add
-- **nUPDATE** - 1 - add UPDATE Audit, 0 - don't add
-- **nDELETE** - 1 - add DELETE Audit, 0 - don't add
-- **nTIME_TYPE** - 1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter, 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**
-- **nDAYS_CNT** - if nTIME_TYPE = 1 then this parameter show Days count for saving Audit
-- **nMONTHS_CNT** - if nTIME_TYPE = 2 then this parameter show Month count for saving Audit
+|**nINSERT**|1, 0|1 - add INSERT Audit, 0 - don't add|
+|**nUPDATE**|1, 0|1 - add UPDATE Audit, 0 - don't add|
+|**nDELETE**|1, 0|1 - add DELETE Audit, 0 - don't add|
+|**nTIME_TYPE**|1, 2, null|1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter, 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**|
+|**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter show Days count for saving Audit|
+|**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter show Month count for saving Audit|
 
 :two: Creating Audit Objects with Custom Objects Names
 
