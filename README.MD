@@ -17,15 +17,15 @@ Create all objects from
 ### :one: Creating Audit Objects with Default Objects Names
 
 ```
-PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME	IN varchar2,
-								vSCHEMA		IN varchar2 DEFAULT vSCHEMA_DEFAULT,
-								tGRANTS		IN GRANTS DEFAULT NULL,
-								nINSERT		IN NUMBER DEFAULT 1,
-								nUPDATE		IN NUMBER DEFAULT 1,
-								nDELETE		IN NUMBER DEFAULT 1,
-								nTIME_TYPE	IN NUMBER DEFAULT NULL,
-								nDAYS_CNT	IN NUMBER DEFAULT NULL,
-								nMONTHS_CNT	IN NUMBER DEFAULT NULL);
+PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
+                               vSCHEMA     IN varchar2 DEFAULT vSCHEMA_DEFAULT,
+                               tGRANTS     IN GRANTS DEFAULT NULL,
+                               nINSERT     IN NUMBER DEFAULT 1,
+                               nUPDATE     IN NUMBER DEFAULT 1,
+                               nDELETE     IN NUMBER DEFAULT 1,
+                               nTIME_TYPE  IN NUMBER DEFAULT NULL,
+                               nDAYS_CNT   IN NUMBER DEFAULT NULL,
+                               nMONTHS_CNT IN NUMBER DEFAULT NULL);
 ```
 
 - **vTABLE_NAME** - table for audit
