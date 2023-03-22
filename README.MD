@@ -7,14 +7,14 @@ An audit is needed to monitor for the addition, updating, or deletion of records
 Create all objects from
 - **AUDIT_TABLES_OBJECTS_LIST.sql**
 - **AUDIT_CLEAR.sql**
-- **CLEAR_AUDIT_TABLES_JOB.sql** - job for cleaning audit table. You can configurate you own job. You maybe should add ***GRANT SCHEDULER_ADMIN TO <Your Schema>;***
-- **V_AUDIT_TABLES_OBJECTS_LIST.sql** - You maybe should add ***GRANT CREATE ANY VIEW TO <Your Schema>;***
+- **CLEAR_AUDIT_TABLES_JOB.sql** - job for cleaning audit table. You can configurate you own job. You maybe should add ***GRANT SCHEDULER_ADMIN TO <Your Schema>***
+- **V_AUDIT_TABLES_OBJECTS_LIST.sql** - You maybe should add ***GRANT CREATE ANY VIEW TO <Your Schema>***
 - **PKG_AUD_(SPECIFICATION)**
 - **PKG_AUD_(BODY)**
 
 ## Using
 
-:one: Creating Audit Objects with Default Objects Names
+###:one: Creating Audit Objects with Default Objects Names
 
 ```
 PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME	IN varchar2,
