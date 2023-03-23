@@ -166,7 +166,7 @@ SELECT * FROM AUD_TEST_AUDIT;
 ```
 
 <p align="center">
-	<img src="https://github.com/Ruslan-Shevyrev/MediaFilesToGitHub/blob/master/Oracle_Tables-Audit/media/Example-Oracle_Tables-Audit.gif" width="350" title="Example">
+	<img src="https://github.com/Ruslan-Shevyrev/MediaFilesToGitHub/blob/master/Oracle_Tables-Audit/media/Example-Oracle_Tables-Audit.gif" title="Example">
 </p>
 
 
