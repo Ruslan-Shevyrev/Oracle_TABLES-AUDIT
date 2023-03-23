@@ -53,6 +53,8 @@ AS
 	vUPDATE			varchar2(4000);
 	vDELETE			varchar2(4000);
 	LIST_AUD_ID		NUMBER;
+	vAPEX_VERSION	varchar2(4000);
+	vSQL_USERS		varchar2(4000);
 BEGIN
 
 	IF nINSERT NOT IN (1, 0) THEN
@@ -253,6 +255,14 @@ IF nDELETE = 1 THEN
 		vDELETE:='null;';
 	END IF;
 
+	BEGIN
+	EXECUTE IMMEDIATE 'SELECT VERSION_NO FROM APEX_RELEASE' INTO vAPEX_VERSION;
+		vSQL_USERS:='vAUD_USER :=nvl(v(''APP_USER''), sys_context(''userenv'',''os_user'')); '||chr(10)||chr(13)||
+					'nAUD_USER_ID	:=v(''EXT_USERID''); ';
+	EXCEPTION WHEN OTHERS THEN
+		vSQL_USERS:='vAUD_USER :=sys_context(''userenv'',''os_user''); ';
+	END;
+
 	EXECUTE IMMEDIATE 'CREATE OR REPLACE TRIGGER '||TABLE_TRG_NAME||' '||chr(10)||chr(13)||
 						'AFTER INSERT OR UPDATE OR DELETE '||chr(10)||chr(13)||
 						'ON '||SOURCE_TABLE||' '||chr(10)||chr(13)||
@@ -262,8 +272,7 @@ IF nDELETE = 1 THEN
 						'vAUD_USER		VARCHAR2(4000); '||chr(10)||chr(13)||
 						'nAUD_USER_ID	NUMBER; '||chr(10)||chr(13)||
 						'BEGIN '||chr(10)||chr(13)||
-							'vAUD_USER :=nvl(v(''APP_USER''), sys_context(''userenv'',''os_user'')); '||chr(10)||chr(13)||
-							'nAUD_USER_ID	:=v(''EXT_USERID''); '||chr(10)||chr(13)||
+							vSQL_USERS||chr(10)||chr(13)||
 							'IF INSERTING THEN '||chr(10)||chr(13)||
 								vINSERT||chr(10)||chr(13)||
 							'ELSIF UPDATING THEN '||chr(10)||chr(13)||
