@@ -4,14 +4,6 @@ An audit is needed to monitor the inserting, updating, or deleting records in th
 
 ## Instalation
 
-:warning: Probably, you should add grants
-
-1. ***GRANT SCHEDULER_ADMIN TO Your_Schema***
-2. ***GRANT CREATE ANY TABLES TO Your_Schema***
-3. ***GRANT CREATE ANY VIEW TO Your_Schema***
-4. ***GRANT CREATE ANY SEQUENCE TO Your_Schema***
-5. ***GRANT CREATE ANY TRIGGER TO Your_Schema***
-
 Create all objects from
 1. **AUDIT_TABLES_OBJECTS_LIST.sql**
 2. **AUDIT_CLEAR.sql**
@@ -19,6 +11,13 @@ Create all objects from
 4. **V_AUDIT_TABLES_OBJECTS_LIST.sql**\
 5. **PKG_AUD_(SPECIFICATION)**
 6. **PKG_AUD_(BODY)**
+
+:warning: Probably, you should add grants
+1. ***GRANT SCHEDULER_ADMIN TO Your_Schema***
+2. ***GRANT CREATE ANY TABLES TO Your_Schema***
+3. ***GRANT CREATE ANY VIEW TO Your_Schema***
+4. ***GRANT CREATE ANY SEQUENCE TO Your_Schema***
+5. ***GRANT CREATE ANY TRIGGER TO Your_Schema***
 
 ## Using
 
