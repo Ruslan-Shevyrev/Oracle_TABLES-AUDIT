@@ -165,6 +165,11 @@ DELETE FROM TEST_AUDIT WHERE ID = 1;
 SELECT * FROM AUD_TEST_AUDIT;
 ```
 
+<p align="center">
+	<img src="https://github.com/Ruslan-Shevyrev/MediaFilesToGitHub/blob/master/Oracle_Tables-Audit/media/Example-Oracle_Tables-Audit.gif" width="350" title="Example">
+</p>
+
+
 <table>
 	<tr>
 		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logo_mini.gif" title="logo"></td>
