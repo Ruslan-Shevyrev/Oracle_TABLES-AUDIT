@@ -144,6 +144,27 @@ PROCEDURE CLEAR_AUDIT_TABLES;
 
 Procedure for **CLEAR_AUDIT_TABLES_JOB**
 
+## Example
+
+```
+CREATE TABLE TEST_AUDIT
+( ID NUMBER(38,0), 
+  NAME VARCHAR2(100)
+);
+
+BEGIN
+	PKG_AUDIT.CREATE_AUDIT_OBJECTS(vTABLE_NAME => 'TEST_AUDIT');
+END;
+
+INSERT INTO TEST_AUDIT (ID, NAME) VALUES(1, 'TEST');
+
+UPDATE TEST_AUDIT SET NAME = 'TEST_2' WHERE ID = 1;
+
+DELETE FROM TEST_AUDIT WHERE ID = 1;
+
+SELECT * FROM AUD_TEST_AUDIT;
+```
+
 <table>
 	<tr>
 		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logo_mini.gif" title="logo"></td>
