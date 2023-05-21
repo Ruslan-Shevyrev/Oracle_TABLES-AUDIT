@@ -7,7 +7,7 @@ An audit is needed to monitor the inserting, updating, or deleting records in th
 Create all objects from
 1. **AUDIT_TABLES_OBJECTS_LIST.sql**
 2. **AUDIT_CLEAR.sql**
-3. **CLEAR_AUDIT_TABLES_JOB.sql** - job for cleaning audit table. You can configurate your own job.
+3. **CLEAR_AUDIT_TABLES_JOB.sql** - job for cleaning audit table. You can configurate your own job
 4. **V_AUDIT_TABLES_OBJECTS_LIST.sql**
 5. **PKG_AUD_(SPECIFICATION)**
 6. **PKG_AUD_(BODY)**
