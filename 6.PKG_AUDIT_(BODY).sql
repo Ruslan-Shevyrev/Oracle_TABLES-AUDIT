@@ -1,65 +1,70 @@
 CREATE OR REPLACE PACKAGE BODY PKG_AUDIT
 AS
 
-PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME		IN varchar2,
-								vSCHEMA			IN varchar2 DEFAULT vSCHEMA_DEFAULT,
-								tGRANTS			IN GRANTS DEFAULT NULL,
-								nINSERT			IN NUMBER DEFAULT 1,
-								nUPDATE			IN NUMBER DEFAULT 1,
-								nDELETE			IN NUMBER DEFAULT 1,
-								nTIME_TYPE		IN NUMBER DEFAULT NULL,
-								nDAYS_CNT		IN NUMBER DEFAULT NULL,
-								nMONTHS_CNT		IN NUMBER DEFAULT NULL,
-								nCOPY_VALUES	IN NUMBER DEFAULT 0)
+PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME				IN varchar2,
+								vSCHEMA					IN varchar2 DEFAULT vSCHEMA_DEFAULT,
+								tGRANTS					IN GRANTS DEFAULT NULL,
+								nINSERT					IN NUMBER DEFAULT 1,
+								nUPDATE					IN NUMBER DEFAULT 1,
+								nDELETE					IN NUMBER DEFAULT 1,
+								nTIME_TYPE				IN NUMBER DEFAULT NULL,
+								nDAYS_CNT				IN NUMBER DEFAULT NULL,
+								nMONTHS_CNT				IN NUMBER DEFAULT NULL,
+								nCOPY_VALUES			IN NUMBER DEFAULT 0,
+								nAUTONOMOUS_TRANSACTION	IN NUMBER DEFAULT 1)
 AS
 BEGIN
-	PKG_AUDIT.CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME	=>vTABLE_NAME,
-										vSCHEMA			=>vSCHEMA,
-										vAUD_TABLE		=>'AUD_'||vTABLE_NAME,
-										vAUD_SEQ		=>'AUD_'||vTABLE_NAME||'_SEQ',
-										nAUD_SEQ_CACHE	=>100,
-										vAUD_TRG_NAME	=>'AUD_'||vTABLE_NAME||'_I',
-										vTABLE_TRG_NAME	=>'LOG_'||vTABLE_NAME,
-										tGRANTS			=>tGRANTS,
-										nINSERT			=>nINSERT,
-										nUPDATE			=>nUPDATE,
-										nDELETE			=>nDELETE,
-										nTIME_TYPE		=>nTIME_TYPE,
-										nDAYS_CNT		=>nDAYS_CNT,
-										nMONTHS_CNT		=>nMONTHS_CNT,
-										nCOPY_VALUES	=>nCOPY_VALUES);
+	PKG_AUDIT.CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME			=>vTABLE_NAME,
+										vSCHEMA					=>vSCHEMA,
+										vAUD_TABLE				=>'AUD_'||vTABLE_NAME,
+										vAUD_SEQ				=>'AUD_'||vTABLE_NAME||'_SEQ',
+										nAUD_SEQ_CACHE			=>100,
+										vAUD_TRG_NAME			=>'AUD_'||vTABLE_NAME||'_I',
+										vTABLE_TRG_NAME			=>'LOG_'||vTABLE_NAME,
+										tGRANTS					=>tGRANTS,
+										nINSERT					=>nINSERT,
+										nUPDATE					=>nUPDATE,
+										nDELETE					=>nDELETE,
+										nTIME_TYPE				=>nTIME_TYPE,
+										nDAYS_CNT				=>nDAYS_CNT,
+										nMONTHS_CNT				=>nMONTHS_CNT,
+										nCOPY_VALUES			=>nCOPY_VALUES,
+										nAUTONOMOUS_TRANSACTION	=>nAUTONOMOUS_TRANSACTION);
 END CREATE_AUDIT_OBJECTS;
 
-PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME	IN varchar2,
-									vSCHEMA			IN varchar2,
-									vAUD_TABLE		IN varchar2,
-									vAUD_SEQ		IN varchar2,
-									nAUD_SEQ_CACHE	IN NUMBER DEFAULT NULL,
-									vAUD_TRG_NAME	IN varchar2,
-									vTABLE_TRG_NAME	IN varchar2,
-									tGRANTS			IN GRANTS DEFAULT NULL,
-									nINSERT			IN NUMBER DEFAULT 1,
-									nUPDATE			IN NUMBER DEFAULT 1,
-									nDELETE			IN NUMBER DEFAULT 1,
-									nTIME_TYPE		IN NUMBER DEFAULT NULL,
-									nDAYS_CNT		IN NUMBER DEFAULT NULL,
-									nMONTHS_CNT		IN NUMBER DEFAULT NULL,
-									nCOPY_VALUES	IN NUMBER DEFAULT 0)
+PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME			IN varchar2,
+									vSCHEMA					IN varchar2,
+									vAUD_TABLE				IN varchar2,
+									vAUD_SEQ				IN varchar2,
+									nAUD_SEQ_CACHE			IN NUMBER DEFAULT NULL,
+									vAUD_TRG_NAME			IN varchar2,
+									vTABLE_TRG_NAME			IN varchar2,
+									tGRANTS					IN GRANTS DEFAULT NULL,
+									nINSERT					IN NUMBER DEFAULT 1,
+									nUPDATE					IN NUMBER DEFAULT 1,
+									nDELETE					IN NUMBER DEFAULT 1,
+									nTIME_TYPE				IN NUMBER DEFAULT NULL,
+									nDAYS_CNT				IN NUMBER DEFAULT NULL,
+									nMONTHS_CNT				IN NUMBER DEFAULT NULL,
+									nCOPY_VALUES			IN NUMBER DEFAULT 0,
+									nAUTONOMOUS_TRANSACTION	IN NUMBER DEFAULT 1)
 AS
-	AUD_TABLE		varchar2(100);
-	SOURCE_TABLE	varchar2(100);
-	AUD_SEQ_CACHE	varchar2(50);
-	AUD_SEQ			varchar2(100);
-	AUD_TRG_NAME	varchar2(100);
-	TABLE_TRG_NAME	varchar2(100);
-	vINSERT			varchar2(4000);
-	vUPDATE			varchar2(4000);
-	vDELETE			varchar2(4000);
-	LIST_AUD_ID		NUMBER;
-	vAPEX_VERSION	varchar2(4000);
-	vSQL_USERS		varchar2(4000);
-	vAUD_USER 		VARCHAR2(4000);
-	nAUD_USER_ID	NUMBER;
+	AUD_TABLE				varchar2(100);
+	SOURCE_TABLE			varchar2(100);
+	AUD_SEQ_CACHE			varchar2(50);
+	AUD_SEQ					varchar2(100);
+	AUD_TRG_NAME			varchar2(100);
+	TABLE_TRG_NAME			varchar2(100);
+	vINSERT					varchar2(4000);
+	vUPDATE					varchar2(4000);
+	vDELETE					varchar2(4000);
+	LIST_AUD_ID				NUMBER;
+	vAPEX_VERSION			varchar2(4000);
+	vSQL_USERS				varchar2(4000);
+	vAUD_USER 				VARCHAR2(4000);
+	nAUD_USER_ID			NUMBER;
+	vAUTONOMOUS_TRANSACTION	VARCHAR2(200);
+	vCOMMIT					VARCHAR2(200);
 BEGIN
 
 	IF nINSERT NOT IN (1, 0) THEN
@@ -254,7 +259,7 @@ BEGIN
 		vUPDATE:='null;';
 	END IF;
 
-IF nDELETE = 1 THEN 
+	IF nDELETE = 1 THEN 
 		vDELETE:='INSERT INTO '||AUD_TABLE||'( '||chr(10)||chr(13);
 		FOR c IN (SELECT COLUMN_NAME 
 					FROM all_tab_columns 
@@ -289,6 +294,14 @@ IF nDELETE = 1 THEN
 		vDELETE:='null;';
 	END IF;
 
+	IF nAUTONOMOUS_TRANSACTION = 1 THEN
+		vAUTONOMOUS_TRANSACTION := 'pragma autonomous_transaction; '||chr(10)||chr(13);
+		vCOMMIT := 'COMMIT; '||chr(10)||chr(13);
+	ELSE
+		vAUTONOMOUS_TRANSACTION := '';
+		vCOMMIT:='';
+	END IF;
+
 	BEGIN
 		EXECUTE IMMEDIATE 'SELECT VERSION_NO FROM APEX_RELEASE' INTO vAPEX_VERSION;
 			vSQL_USERS:='vAUD_USER :=nvl(v(''APP_USER''), sys_context(''userenv'',''os_user'')); '||chr(10)||chr(13)||
@@ -302,7 +315,7 @@ IF nDELETE = 1 THEN
 						'ON '||SOURCE_TABLE||' '||chr(10)||chr(13)||
 						'FOR EACH ROW '||chr(10)||chr(13)||
 						'DECLARE '||chr(10)||chr(13)||
-						'pragma autonomous_transaction; '||chr(10)||chr(13)||
+						vAUTONOMOUS_TRANSACTION||
 						'vAUD_USER		VARCHAR2(4000); '||chr(10)||chr(13)||
 						'nAUD_USER_ID	NUMBER; '||chr(10)||chr(13)||
 						'BEGIN '||chr(10)||chr(13)||
@@ -314,11 +327,12 @@ IF nDELETE = 1 THEN
 							'ELSIF DELETING THEN '||chr(10)||chr(13)||
 								vDELETE||chr(10)||chr(13)||
 							'END IF; '||chr(10)||chr(13)||
-							'COMMIT; '||chr(10)||chr(13)||
+							vCOMMIT||
 						'END '||upper(vAUD_TRG_NAME)||';';
 
 	UPDATE AUDIT_TABLES_OBJECTS_LIST
-		SET TABLE_TRIGGER = UPPER(vTABLE_TRG_NAME) 
+		SET TABLE_TRIGGER = UPPER(vTABLE_TRG_NAME),
+		AUTONOMOUS_TRANSACTION = nAUTONOMOUS_TRANSACTION
 		WHERE ID = LIST_AUD_ID;
 	COMMIT;
 
