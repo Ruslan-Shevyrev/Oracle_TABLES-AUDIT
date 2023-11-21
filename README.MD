@@ -24,15 +24,17 @@ Create all objects from
 ### :one: Creating Audit Objects with Default Objects Names
 
 ```
-PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
-                               vSCHEMA     IN varchar2 DEFAULT vSCHEMA_DEFAULT,
-                               tGRANTS     IN GRANTS DEFAULT NULL,
-                               nINSERT     IN NUMBER DEFAULT 1,
-                               nUPDATE     IN NUMBER DEFAULT 1,
-                               nDELETE     IN NUMBER DEFAULT 1,
-                               nTIME_TYPE  IN NUMBER DEFAULT NULL,
-                               nDAYS_CNT   IN NUMBER DEFAULT NULL,
-                               nMONTHS_CNT IN NUMBER DEFAULT NULL);
+PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME             IN varchar2,
+                               vSCHEMA                 IN varchar2 DEFAULT vSCHEMA_DEFAULT,
+                               tGRANTS                 IN GRANTS DEFAULT NULL,
+                               nINSERT                 IN NUMBER DEFAULT 1,
+                               nUPDATE                 IN NUMBER DEFAULT 1,
+                               nDELETE                 IN NUMBER DEFAULT 1,
+                               nTIME_TYPE              IN NUMBER DEFAULT NULL,
+                               nDAYS_CNT               IN NUMBER DEFAULT NULL,
+                               nMONTHS_CNT             IN NUMBER DEFAULT NULL,
+                               nCOPY_VALUES            IN NUMBER DEFAULT 0,
+                               nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1);
 ```
 
 |PARAMETER|VALUES|NOTE|
@@ -46,24 +48,28 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
 |**nTIME_TYPE**|1, 2, null|1 - add Clearing **<AUDIT_TABLE>** with ***Days*** parameter, 2 - add Clearing **<AUDIT_TABLE>** with ***Month*** parameter, null - don't add Clearing for **<AUDIT_TABLE>**|
 |**nDAYS_CNT**|number|if nTIME_TYPE = 1 then this parameter sets a Days count for Audit saving|
 |**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter sets a Months count for Audit saving|
+|**nCOPY_VALUES**|1, 0|1 - add exists values in audit table as "I" values, 0 - don't add|
+|**nAUTONOMOUS_TRANSACTION**|1, 0|1 - Create TABLE_TRIGGER as ***pragma autonomous_transaction***|
 
 ### :two: Creating Audit Objects with Custom Objects Names
 
 ```
-PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME     IN varchar2,
-                                      vSCHEMA         IN varchar2,
-                                      vAUD_TABLE      IN varchar2,
-                                      vAUD_SEQ        IN varchar2,
-                                      nAUD_SEQ_CACHE  IN NUMBER DEFAULT NULL,
-                                      vAUD_TRG_NAME   IN varchar2,
-                                      vTABLE_TRG_NAME IN varchar2,
-                                      tGRANTS         IN GRANTS DEFAULT NULL,
-                                      nINSERT         IN NUMBER DEFAULT 1,
-                                      nUPDATE         IN NUMBER DEFAULT 1,
-                                      nDELETE         IN NUMBER DEFAULT 1,
-                                      nTIME_TYPE      IN NUMBER DEFAULT NULL,
-                                      nDAYS_CNT       IN NUMBER DEFAULT NULL,
-                                      nMONTHS_CNT     IN NUMBER DEFAULT NULL);
+PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME             IN varchar2,
+                                      vSCHEMA                 IN varchar2,
+                                      vAUD_TABLE              IN varchar2,
+                                      vAUD_SEQ                IN varchar2,
+                                      nAUD_SEQ_CACHE          IN NUMBER DEFAULT NULL,
+                                      vAUD_TRG_NAME           IN varchar2,
+                                      vTABLE_TRG_NAME         IN varchar2,
+                                      tGRANTS                 IN GRANTS DEFAULT NULL,
+                                      nINSERT                 IN NUMBER DEFAULT 1,
+                                      nUPDATE                 IN NUMBER DEFAULT 1,
+                                      nDELETE                 IN NUMBER DEFAULT 1,
+                                      nTIME_TYPE              IN NUMBER DEFAULT NULL,
+                                      nDAYS_CNT               IN NUMBER DEFAULT NULL,
+                                      nMONTHS_CNT             IN NUMBER DEFAULT NULL,
+                                      nCOPY_VALUES            IN NUMBER DEFAULT 0,
+                                      nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1);
 ```
 
 |PARAMETER|NOTE|DEFAULT|
