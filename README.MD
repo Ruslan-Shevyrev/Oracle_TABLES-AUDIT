@@ -82,7 +82,10 @@ PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME             IN varchar2,
                                       nDAYS_CNT               IN NUMBER DEFAULT NULL,
                                       nMONTHS_CNT             IN NUMBER DEFAULT NULL,
                                       nCOPY_VALUES            IN NUMBER DEFAULT 0,
-                                      nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1);
+                                      nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1,
+                                      vINSERT_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
+                                      vUPDATE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
+                                      vDELETE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL);
 ```
 
 |PARAMETER|NOTE|DEFAULT|
@@ -100,7 +103,10 @@ PROCEDURE UPDATE_AUDIT_OBJECTS(nLIST_AUD_ID            IN NUMBER,
                                nINSERT                 IN NUMBER DEFAULT 1,
                                nUPDATE                 IN NUMBER DEFAULT 1,
                                nDELETE                 IN NUMBER DEFAULT 1,
-                               nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1);
+                               nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1,
+                               vINSERT_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
+                               vUPDATE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
+                               vDELETE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL);
 ```
 
 ### :four: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
