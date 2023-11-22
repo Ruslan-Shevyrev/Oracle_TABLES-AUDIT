@@ -31,7 +31,9 @@ BEGIN
 				AUD_TABLE
 			FROM AUDIT_TABLES_OBJECTS_LIST
 			WHERE ID = nLIST_AUD_ID;
-			
+
+	EXCEPTION WHEN no_data_found THEN
+		raise_application_error(-20555, 'Audit not found');	
 	END;
 	
 	AUD_TABLE:=upper(T_SCHEMA)||'.'||upper(AUD_TABLE);
