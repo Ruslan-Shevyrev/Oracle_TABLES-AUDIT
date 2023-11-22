@@ -57,9 +57,11 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME             IN varchar2,
 |**vUPDATE_ADD_CONDITIONS**|varchar2|Additional conditions for ***UPDATE LOG***|
 |**vDELETE_ADD_CONDITIONS**|varchar2|Additional conditions for ***DELETE LOG***|
 
-*** Example Additional conditions***
+***Example Additional conditions***
 ```
-:NEW.ID > 10
+vINSERT_ADD_CONDITIONS = ':NEW.ID > 10'
+vUPDATE_ADD_CONDITIONS = ':NEW.ID > 15'
+vDELETE_ADD_CONDITIONS = ':OLD.ID > 5'
 ```
 
 ### :two: Creating Audit Objects with Custom Objects Names
