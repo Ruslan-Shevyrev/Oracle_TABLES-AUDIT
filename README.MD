@@ -80,20 +80,30 @@ PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME             IN varchar2,
 |**vAUD_TRG_NAME**|Trigger name for **vAUD_TABLE**|**AUD_<vTABLE_NAME>_I**|
 |**vTABLE_TRG_NAME**|Trigger name for **vTABLE_NAME**|**LOG_<vTABLE_NAME>**|
 
-### :three: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
+### :three: Update Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
+
+```
+PROCEDURE UPDATE_AUDIT_OBJECTS(nLIST_AUD_ID            IN NUMBER,
+                               nINSERT                 IN NUMBER DEFAULT 1,
+                               nUPDATE                 IN NUMBER DEFAULT 1,
+                               nDELETE                 IN NUMBER DEFAULT 1,
+                               nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1);
+```
+
+### :four: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.ID**
 
 ```
 PROCEDURE DROP_AUDIT_OBJECTS(nID IN NUMBER);
 ```
 
-### :four: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.T_SCHEMA** and **AUDIT_TABLES_OBJECTS_LIST.SOURCE_TABLE**
+### :five: Drop Audit Objects by **AUDIT_TABLES_OBJECTS_LIST.T_SCHEMA** and **AUDIT_TABLES_OBJECTS_LIST.SOURCE_TABLE**
 
 ```
 PROCEDURE DROP_AUDIT_OBJECTS(vTABLE_NAME IN varchar2,
                              vSCHEMA     IN varchar2 DEFAULT vSCHEMA_DEFAULT);
 ```
 
-### :five: Add Table to clear in Job
+### :six: Add Table to clear in Job
 
 ```
 PROCEDURE CREATE_AUDIT_CLEAR(P_vSCHEMA      IN VARCHAR2,
@@ -115,7 +125,7 @@ PROCEDURE CREATE_AUDIT_CLEAR(P_vSCHEMA      IN VARCHAR2,
 |**nMONTHS_CNT**|number|if nTIME_TYPE = 2 then this parameter sets a Month count for Audit saving|
 |**P_vIS_ACTIVE**|'Y', 'N'|'Y' - active clearing, 'N' - inactive clearing|
 
-### :six: Update Table to clear in Job
+### :seven: Update Table to clear in Job
 
 ```
 PROCEDURE UPDATE_AUDIT_CLEAR(P_nID          IN NUMBER,
@@ -132,7 +142,7 @@ PROCEDURE UPDATE_AUDIT_CLEAR(P_nID          IN NUMBER,
 |----------|------|----|
 |**P_nID**|number|**AUDIT_CLEAR.ID**|
 
-### :seven: Delete Table to clear in Job
+### :eight: Delete Table to clear in Job
 
 ```
 PROCEDURE DELETE_AUDIT_CLEAR(P_nID IN NUMBER);
@@ -142,7 +152,7 @@ PROCEDURE DELETE_AUDIT_CLEAR(P_nID IN NUMBER);
 |----------|------|----|
 |**P_nID**|number|**AUDIT_CLEAR.ID**|
 
-### :eight: Clearing Job
+### :nine: Clearing Job
 
 ```
 PROCEDURE CLEAR_AUDIT_TABLES;
