@@ -68,7 +68,7 @@ BEGIN
 			'''I'', '||chr(10)||chr(13)||
 			'nAUD_USER_ID, '||chr(10)||chr(13)||
 			'vAUD_USER, '||chr(10)||chr(13)||
-			'SYSDATE); '||chr(10)||chr(13);
+			'SYSDATE); ';
 		
 	ELSE
 		vINSERT:='null;';
@@ -103,7 +103,7 @@ BEGIN
 			'''U'', '||chr(10)||chr(13)||
 			'nAUD_USER_ID, '||chr(10)||chr(13)||
 			'vAUD_USER, '||chr(10)||chr(13)||
-			'SYSDATE); '||chr(10)||chr(13);
+			'SYSDATE); ';
 
 	ELSE
 		vUPDATE:='null;';
@@ -138,15 +138,15 @@ BEGIN
 			'''D'', '||chr(10)||chr(13)||
 			'nAUD_USER_ID, '||chr(10)||chr(13)||
 			'vAUD_USER, '||chr(10)||chr(13)||
-			'SYSDATE); '||chr(10)||chr(13);
+			'SYSDATE); ';
 
 	ELSE
 		vDELETE:='null;';
 	END IF;
 
 	IF nAUTONOMOUS_TRANSACTION = 1 THEN
-		vAUTONOMOUS_TRANSACTION := 'pragma autonomous_transaction; '||chr(10)||chr(13);
-		vCOMMIT := 'COMMIT; '||chr(10)||chr(13);
+		vAUTONOMOUS_TRANSACTION := 'pragma autonomous_transaction; ';
+		vCOMMIT := 'COMMIT; ';
 	ELSE
 		vAUTONOMOUS_TRANSACTION := '';
 		vCOMMIT:='';
@@ -165,7 +165,7 @@ BEGIN
 						'ON '||SOURCE_TABLE||' '||chr(10)||chr(13)||
 						'FOR EACH ROW '||chr(10)||chr(13)||
 						'DECLARE '||chr(10)||chr(13)||
-						vAUTONOMOUS_TRANSACTION||
+						vAUTONOMOUS_TRANSACTION||chr(10)||chr(13)||
 						'vAUD_USER		VARCHAR2(4000); '||chr(10)||chr(13)||
 						'nAUD_USER_ID	NUMBER; '||chr(10)||chr(13)||
 						'BEGIN '||chr(10)||chr(13)||
@@ -177,7 +177,7 @@ BEGIN
 							'ELSIF DELETING THEN '||chr(10)||chr(13)||
 								vDELETE||chr(10)||chr(13)||
 							'END IF; '||chr(10)||chr(13)||
-							vCOMMIT||
+							vCOMMIT||chr(10)||chr(13)||
 						'END '||upper(vTABLE_TRG_NAME)||';';
 
 	UPDATE AUDIT_TABLES_OBJECTS_LIST
@@ -430,7 +430,11 @@ BEGIN
 		OR nIS_AUTONOMOUS_TRANSACTION <> nAUTONOMOUS_TRANSACTION THEN
 
 		IF vTABLE_TRG_NAME IS NOT NULL THEN
-			EXECUTE IMMEDIATE 'DROP TRIGGER '||upper(vSCHEMA)||'.'||upper(vTABLE_TRG_NAME);
+			BEGIN
+				EXECUTE IMMEDIATE 'DROP TRIGGER '||upper(vSCHEMA)||'.'||upper(vTABLE_TRG_NAME);
+			EXCEPTION WHEN OTHERS THEN
+				NULL;
+			END;
 		END IF;
 		
 		CREATE_TABLE_TRIGGER(nLIST_AUD_ID			=> nLIST_AUD_ID,
