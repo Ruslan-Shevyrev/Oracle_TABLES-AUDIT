@@ -57,7 +57,7 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME              IN varchar2,
 |**vINSERT_ADD_CONDITIONS**|varchar2|Additional conditions for ***INSERT LOG***|
 |**vUPDATE_ADD_CONDITIONS**|varchar2|Additional conditions for ***UPDATE LOG***|
 |**vDELETE_ADD_CONDITIONS**|varchar2|Additional conditions for ***DELETE LOG***|
-|**nSAVE_OLD_AND_NEW_VALUES**|1, 0|1 - **<AUDIT_TABLE>** will be created as NEW_COLUMN_NAME, OLD_COLUN_NAME. This mode makes it easier to monitor Updates but Audit takes twice as much space.|
+|**nSAVE_OLD_AND_NEW_VALUES**|1, 0|1 - **<AUDIT_TABLE>** will be created as ***NEW_COLUMN_NAME***, ***OLD_COLUN_NAME***. This mode makes it easier to monitor Updates but Audit takes twice as much space.|
 
 ***Example of Additional Conditions:***
 ```
