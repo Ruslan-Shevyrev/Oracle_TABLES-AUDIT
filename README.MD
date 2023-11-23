@@ -87,7 +87,8 @@ PROCEDURE CREATE_AUDIT_OBJECTS_CUSTOM(vTABLE_NAME             IN varchar2,
                                       nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1,
                                       vINSERT_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
                                       vUPDATE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
-                                      vDELETE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL);
+                                      vDELETE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
+                                      nSAVE_OLD_AND_NEW_VALUES IN NUMBER DEFAULT 0);
 ```
 
 |PARAMETER|NOTE|DEFAULT|
