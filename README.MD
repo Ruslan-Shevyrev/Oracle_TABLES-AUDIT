@@ -24,20 +24,21 @@ Create all objects from
 ### :one: Creating Audit Objects with Default Objects Names
 
 ```
-PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME             IN varchar2,
-                               vSCHEMA                 IN varchar2 DEFAULT vSCHEMA_DEFAULT,
-                               tGRANTS                 IN GRANTS DEFAULT NULL,
-                               nINSERT                 IN NUMBER DEFAULT 1,
-                               nUPDATE                 IN NUMBER DEFAULT 1,
-                               nDELETE                 IN NUMBER DEFAULT 1,
-                               nTIME_TYPE              IN NUMBER DEFAULT NULL,
-                               nDAYS_CNT               IN NUMBER DEFAULT NULL,
-                               nMONTHS_CNT             IN NUMBER DEFAULT NULL,
-                               nCOPY_VALUES            IN NUMBER DEFAULT 0,
-                               nAUTONOMOUS_TRANSACTION IN NUMBER DEFAULT 1,
-                               vINSERT_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
-                               vUPDATE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL,
-                               vDELETE_ADD_CONDITIONS  IN VARCHAR2 DEFAULT NULL);
+PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME              IN varchar2,
+                               vSCHEMA                  IN varchar2 DEFAULT vSCHEMA_DEFAULT,
+                               tGRANTS                  IN GRANTS DEFAULT NULL,
+                               nINSERT                  IN NUMBER DEFAULT 1,
+                               nUPDATE                  IN NUMBER DEFAULT 1,
+                               nDELETE                  IN NUMBER DEFAULT 1,
+                               nTIME_TYPE               IN NUMBER DEFAULT NULL,
+                               nDAYS_CNT                IN NUMBER DEFAULT NULL,
+                               nMONTHS_CNT              IN NUMBER DEFAULT NULL,
+                               nCOPY_VALUES             IN NUMBER DEFAULT 0,
+                               nAUTONOMOUS_TRANSACTION  IN NUMBER DEFAULT 1,
+                               vINSERT_ADD_CONDITIONS   IN VARCHAR2 DEFAULT NULL,
+                               vUPDATE_ADD_CONDITIONS   IN VARCHAR2 DEFAULT NULL,
+                               vDELETE_ADD_CONDITIONS   IN VARCHAR2 DEFAULT NULL,
+                               nSAVE_OLD_AND_NEW_VALUES IN NUMBER DEFAULT 0);
 ```
 
 |PARAMETER|VALUES|NOTE|
@@ -56,6 +57,7 @@ PROCEDURE CREATE_AUDIT_OBJECTS(vTABLE_NAME             IN varchar2,
 |**vINSERT_ADD_CONDITIONS**|varchar2|Additional conditions for ***INSERT LOG***|
 |**vUPDATE_ADD_CONDITIONS**|varchar2|Additional conditions for ***UPDATE LOG***|
 |**vDELETE_ADD_CONDITIONS**|varchar2|Additional conditions for ***DELETE LOG***|
+|**nSAVE_OLD_AND_NEW_VALUES**|1, 0|1 - **<AUDIT_TABLE>** will be created as NEW_COLUMN_NAME, OLD_COLUN_NAME. This mode makes it easier to monitor Updates but Audit takes twice as much space.|
 
 ***Example of Additional Conditions:***
 ```
