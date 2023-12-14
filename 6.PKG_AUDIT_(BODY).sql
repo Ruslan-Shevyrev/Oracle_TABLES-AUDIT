@@ -441,7 +441,22 @@ BEGIN
 		
 			cSQL:='CREATE TABLE '||AUD_TABLE||' AS (SELECT '||cSQL||', '||AUD_SEQ||'.nextval AS AUD_ID FROM '||SOURCE_TABLE||' t )';
 			EXECUTE IMMEDIATE cSQL;
-		
+
+			-- Del Not Null Constraints
+			BEGIN
+				FOR c IN (SELECT COLUMN_NAME
+							FROM all_tab_columns
+							WHERE OWNER = vSCHEMA
+								AND TABLE_NAME = vAUD_TABLE)
+				LOOP
+					BEGIN
+						EXECUTE IMMEDIATE 'ALTER TABLE '||AUD_TABLE||' MODIFY '||c.COLUMN_NAME||' NULL';
+					EXCEPTION WHEN OTHERS THEN
+						NULL;
+					END;
+				END LOOP;
+			END;
+
 			--Null Old Values
 			cSQL:= NULL;
 			FOR c IN (SELECT COLUMN_NAME
