@@ -129,7 +129,7 @@ BEGIN
 		LOOP
 			IF nSAVE_OLD_AND_NEW_VALUES = 1 THEN
 				vUPDATE:=vUPDATE||':new.'||c.COLUMN_NAME||', '||chr(10)||chr(13)||
-						 		':old.'||c.COLUMN_NAME||', '||chr(10)||chr(13);
+								':old.'||c.COLUMN_NAME||', '||chr(10)||chr(13);
 			ELSE
 				vUPDATE:=vUPDATE||':new.'||c.COLUMN_NAME||', '||chr(10)||chr(13);
 			END IF;
